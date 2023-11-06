@@ -1,7 +1,30 @@
 # Misc (by Ruiming)
-* Clone from [OpenMessaging:0a68a61](https://github.com/openmessaging/benchmark/commit/0a68a615e3f39efb5a1b55ac7bcb9304d5fff9f5)
+## Where does this repo come from?
+* Cloned from [OpenMessaging:0a68a61](https://github.com/openmessaging/benchmark/commit/0a68a615e3f39efb5a1b55ac7bcb9304d5fff9f5)
 * Modify `./benchmark-framework/src/main/java/io/openmessaging/benchmark/WorkloadGenerator.java`, L352 to enable per-second reporting
-* Build before use: `mvn clean install -Denforcer.skip=true`
+## (Build, Step 1) Check local java version and install jdk-11 if necessary
+```
+java -version
+```
+You should see output like:
+```
+1.0.20" 2023-07-18 LTS
+Java(TM) SE Runtime Environment 18.9 (build 11.0.20+9-LTS-256)
+Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.20+9-LTS-256, mixed mode)
+```
+If the second line Runtime Environment has version less than 18.x and build less than 11.x, export jdk-11 binary to system path. In `~/.bashrc`, add the following line, and replace `destination_dir`:
+```
+export PATH=xinda-software/jdk-11.0.20/bin:$PATH
+```
+Refresh `~/.bashrc``, and check java version. You should have JRE 18.9.
+```
+source ~/.bashrc
+java -version
+```
+## (Build, Step 2)
+```
+mvn clean install -Denforcer.skip=true
+```
 
 # OpenMessaging Benchmark Framework
 
