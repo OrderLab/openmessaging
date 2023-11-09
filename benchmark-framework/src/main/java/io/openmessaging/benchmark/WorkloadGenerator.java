@@ -164,11 +164,13 @@ public class WorkloadGenerator implements AutoCloseable {
             CountersStats stats = worker.getCountersStats();
 
             log.info(
-                    "Waiting for topics to be ready -- Sent: {}, Received: {}",
+                    "Waiting for topics to be ready -- Sent: {}, Received: {}, Expected: {}",
                     stats.messagesSent,
-                    stats.messagesReceived);
+                    stats.messagesReceived,
+                    expectedMessages);
             if (stats.messagesReceived < expectedMessages) {
                 try {
+                    log.info("messagesReceived smaller than expectedMessages. Sleep 2_000");
                     Thread.sleep(2_000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
